@@ -8,10 +8,9 @@
 <body >
  
   <h1>Tessel Web Server</h1>
-  <button class="led" id="led-0">Toggle LED0</button>
-  <button class="led" id="led-1">Toggle LED1</button>
-  <button class="led" id="led-2">Toggle LED2</button>
-  <button class="led" id="led-3">Toggle LED3</button>
+  <button class="led" id="led-0">Toggle LED0 GREEN</button>
+  <button class="led" id="led-1">Toggle LED1 BLUE</button>
+  <button class="led" id="led-2">Toggle LED2 RED</button>
 
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"> </script>
 
@@ -34,28 +33,10 @@
     }
   </script>
 
-<!-- 
-  <script>
-    // Create a new websocket connection to Tessel
-    // Put your IP Address here
-    //var exampleSocket = new WebSocket("ws://192.168.1.122:8081");//goes to wifi router
-    var exampleSocket = new WebSocket("ws://127.0.0.1");//for use 
-
-    // We'll be flipping the state
-    var state = true;
-
-    // Every five seconds
-    setInterval(function() {
-      // Construct a packet
-      var packet = {led : 0, on : state}
-      // Send it over the websocket
-      exampleSocket.send(JSON.stringify(packet));
-      // Change the state var
-      state = !state
-
-    }, 5000);
-    
-  </script>
+<!--
+To view this page visit:
+http://ip/index.html for example,
+http://192.168.75.52:8080/index.html
  -->
 </body>
 </html>
