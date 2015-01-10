@@ -30,6 +30,16 @@ development: true              // enable development logging, useful for debuggi
         });
     });
 
+
+    var accel = modules.accel;
+    // Stream accelerometer data
+    accel.on('data', function (xyz) {
+        console.log('x:', xyz[0].toFixed(2),
+            'y:', xyz[1].toFixed(2),
+            'z:', xyz[2].toFixed(2));
+    });
+
+
     // PUT THIS BACK
     //start_server(tessel, router, fs)
 });
