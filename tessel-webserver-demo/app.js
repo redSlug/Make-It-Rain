@@ -1,12 +1,17 @@
 
+
+// Global utility for debugging
+var util_tool = require('util');
+
+
 // Load and immediately run tesselate module
-require('tesselate')({                          // tesselate handles race condition for us
+require('tesselate')({                          // tesselate handles race condition for us and initilizes module hw
     modules: {
         A: ['climate-si7020', 'climate'],       // load climate-si7020 alias climate on port A
         B: ['accel-mma84', 'accel']             // load accelerometer module, aliased as ‘accel’ on port B
 },
 development: true              // enable development logging, useful for debugging
-}, function(tessel, m){
+}, function(tessel, modules){
 
     // returns tessel to you as 'tessel'
     // returns your modules to you as properties of object m
@@ -14,12 +19,19 @@ development: true              // enable development logging, useful for debuggi
 
     var router = require('tiny-router');        // web server used to route requests to callback functions
     var fs = require("fs");                     // file system
-    //console.log("inspecting");
-    //var util_tool = require('util');
-    //console.log(util_tool.inspect(fs))
-    // console.log(fs);
 
-    start_server(tessel, router, fs)
+
+    //console.log(util_tool.inspect(tessel));
+    var climate = modules.climate;
+
+    climate.readTemperature('f', function (err, temp) {             // f means use fahrenheit
+        climate.readHumidity(function (err, humid) {
+            console.log('Degrees:', temp.toFixed(4) + 'F', 'Humidity:', humid.toFixed(4) + '%RH');
+        });
+    });
+
+    // PUT THIS BACK
+    //start_server(tessel, router, fs)
 });
 
 
@@ -48,6 +60,6 @@ function led_button_click(req, res, tessel){
     // Toggle the LED
     tessel.led[index].toggle();
     // Send a response
-    res.send(200);
+    res.send(200);      // 200 is http status code for successfully handled
 }
 
