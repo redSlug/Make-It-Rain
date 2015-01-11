@@ -17,11 +17,6 @@ development: true              // enable development logging, useful for debuggi
     // returns your modules to you as properties of object m
     // refer to the IR module as m.ir, or the accelerometer module as m.accel
 
-    // doesn't use any of the modules
-    var gpio = tessel.port['GPIO']; // select the GPIO port
-	var myPin = gpio.pin['A1'];
-	console.log('Reading pin:', myPin.read());
-
     modules.relay = require('./fake_relay.js'); // comment this out when deploying
     //console.log(modules.relay);
 
@@ -35,7 +30,7 @@ development: true              // enable development logging, useful for debuggi
 });
 
 
-function get_climate_data(modules, res, send_climate){
+function get_climate_data(modules, res, tessel, send_climate){
     //console.log("in beginning of get climate data");
     var our_climate_var;
     climate = modules.climate;
@@ -43,7 +38,14 @@ function get_climate_data(modules, res, send_climate){
         climate.readHumidity(function (err, humid) {
             //weather_string = 'Degrees:', temp.toFixed(4) + 'F', 'Humidity:', humid.toFixed(4) + '%RH';
             //console.log('Degrees:', temp.toFixed(4) + 'F', 'Humidity:', humid.toFixed(4) + '%RH');
-            our_climate_var = {"temperature": temp, "humidity": humid};
+
+            // does not use module. grabs data from A1 pin on tessel
+            var gpio = tessel.port['GPIO']; // select the GPIO port
+            var myPin = gpio.pin['A1'];
+            var moisture_data = myPin.read();
+            console.log('Reading pin:', moisture_data);
+
+            our_climate_var = {"temperature": temp, "humidity": humid, "moisture": moisture_data};
             send_climate(our_climate_var, res);
             //console.log("just made send_climate callback");
         });
@@ -71,7 +73,7 @@ function start_server(tessel, modules, router, fs){  // passing in tessel for de
 
     // When the router gets an HTTP request at /leds/[NUMBER]
     router.get("/leds/{led}", function(req, res) {  // what to do when router calls request for LEDs
-        led_button_click(req, res, modules, tessel);
+        get_plant_data(req, res, modules, tessel);
     }); // just pass the name of the funtion
 
     // When the router gets an HTTP request at /water
@@ -117,7 +119,7 @@ function toggle_water(res, tessel, relay){
     res.send(200);
 }
 
-function led_button_click(req, res, modules, tessel){
+function get_plant_data(req, res, modules, tessel){
     //console.log("button click");
     // this code gets executed when there is a call back
     //console.log('which led?', req.body.led)
@@ -126,13 +128,13 @@ function led_button_click(req, res, modules, tessel){
     // Toggle the LED
     tessel.led[index].toggle();
     // Send a response
-
-    get_climate_data(modules, res, send_climate_data);
+    get_climate_data(modules, res, tessel, send_climate_data);
 }
 
 function send_climate_data(climate_info, res){
     //console.log("in send climate data function");
     //console.log(util.inspect(climate_info));
+    // doesn't use any of the modules
 
     var string_to_send = JSON.stringify(climate_info);
 
