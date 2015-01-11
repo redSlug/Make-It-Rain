@@ -8,8 +8,8 @@ var util = require('util');
 require('tesselate')({                          // tesselate handles race condition for us and initilizes module hw
     modules: {
         A: ['climate-si7020', 'climate'],       // load climate-si7020 alias climate on port A
-        B: ['accel-mma84', 'accel']             // load accelerometer module, aliased as ‘accel’ on port B
-
+        B: ['accel-mma84', 'accel'],            // load accelerometer module, aliased as ‘accel’ on port B
+        D: ['relay-mono', 'relay']              // relay handles the light and the flow of water
 },
 development: true              // enable development logging, useful for debugging
 }, function(tessel, modules){
@@ -43,6 +43,8 @@ function get_climate_data(modules, res, send_climate){
 
 function start_server(tessel, modules, router, fs){  // passing in tessel for dependency injection
     console.log('app.js running');
+    var relay = modules.relay;
+
     // The router should use our static folder for client HTML/JS
     router
         .use('static', {path: './static'})
@@ -55,6 +57,39 @@ function start_server(tessel, modules, router, fs){  // passing in tessel for de
     router.get("/leds/{led}", function(req, res) {  // what to do when router calls request for LEDs
         led_button_click(req, res, modules, tessel);
     }); // just pass the name of the funtion
+
+
+    // When the router gets an HTTP request at /water
+    router.get("/water", function(req, res) {
+        console.log('water turned on');
+        // Toggle the LED (change to water)
+        tessel.led[0].toggle();
+        // Toggle relay channel 1
+        relay.toggle(2, function toggleOneResult(err) {
+            if (err) console.log("Err toggling 2", err);
+        });
+        // Send a response
+        res.send(200);
+    });
+
+    // When the router gets an HTTP request at /leds/[NUMBER]
+    router.get("/lights", function(req, res) {
+        console.log('lights toggled');
+        // Toggle relay channel 1
+        relay.toggle(1, function toggleOneResult(err) {
+            if (err) console.log("Err toggling 1", err);
+        });
+        // Toggle the LED (turn on lights)
+        tessel.led[1].toggle();
+        // Send a response
+        res.send(200);
+    });
+
+
+
+
+
+
     console.log('Running Server');
 }
 
