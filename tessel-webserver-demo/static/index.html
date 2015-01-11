@@ -29,6 +29,8 @@
         type: "GET",
         url: '/leds/' + index,
         success: function() { console.log('led ' + index + ' toggled'); }
+      }).done(function (data) {
+        alert("hello here is the data: " + JSON.stringify(data));
       });
     }
   </script>
