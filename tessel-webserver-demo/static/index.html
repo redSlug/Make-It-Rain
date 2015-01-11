@@ -12,12 +12,24 @@
   <button class="led" id="led-1">Toggle LED1 BLUE</button>
   <button class="led" id="led-2">Toggle LED2 RED</button>
 
+  <br />
+  <h1>Raindance</h1>
+
+  <button class="water" >Turn on Water</button>
+  <button class="light" >Toggle Lights</button>
+  <div id="lightDiv">OFF</div>
+
+
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"> </script>
 
   <script>
 
     // When one of our LED buttons is clicked, call toggleLED
     $('.led').click(toggleLED);
+    var light_state=false;
+    $('.water').click(toggleWater);
+    $('.light').click(toggleLights);
+
 
     function toggleLED() {
 
@@ -33,12 +45,43 @@
         alert("hello here is the data: " + JSON.stringify(data));
       });
     }
+
+
+    function toggleWater() {
+
+      // Make an AJAX post to our tessel with the index
+      $.ajax({
+        type: "GET",
+        url: '/water',
+        success: function() { console.log('water turned on'); }
+      });
+    }
+    function toggleLights() {
+      light_state=!light_state;
+      // Make an AJAX post to our tessel with the index
+      $.ajax({
+        type: "GET",
+        url: '/lights',
+        success: function() { console.log('lights toggled'); }
+      });
+      //Change the content in the light div
+      if(light_state==true){
+        $('#lightDiv').text('ON');
+      }else{
+        $('#lightDiv').text('OFF');
+      }
+    }
+
+
+
+
   </script>
 
 <!--
 To view this page visit:
 http://ip/index.html for example,
 http://192.168.75.52:8080/index.html
+192.168.1.101:8080/index.html
  -->
 </body>
 </html>

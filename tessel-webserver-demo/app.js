@@ -9,6 +9,7 @@ require('tesselate')({                          // tesselate handles race condit
     modules: {
         A: ['climate-si7020', 'climate'],       // load climate-si7020 alias climate on port A
         B: ['accel-mma84', 'accel']             // load accelerometer module, aliased as ‘accel’ on port B
+
 },
 development: true              // enable development logging, useful for debugging
 }, function(tessel, modules){
