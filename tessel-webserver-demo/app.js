@@ -20,6 +20,10 @@ development: true              // enable development logging, useful for debuggi
 
     modules.relay = require('./fake_relay.js');
 
+    tessel.led[0].output(1);
+    tessel.led[1].output(1);
+    tessel.led[2].output(0);
+
     var router = require('tiny-router');        // web server used to route requests to callback functions
     var fs = require("fs");                     // file system
     start_server(tessel, modules, router, fs)
@@ -44,6 +48,7 @@ function get_climate_data(modules, res, send_climate){
 
 
 function start_server(tessel, modules, router, fs){  // passing in tessel for dependency injection
+
     console.log('app.js running');
     var relay = modules.relay;
 
@@ -88,6 +93,9 @@ function start_server(tessel, modules, router, fs){  // passing in tessel for de
     });
 
     console.log('Running Server');
+    tessel.led[0].output(0);
+    tessel.led[1].output(0);
+    tessel.led[2].output(0);
 }
 
 function led_button_click(req, res, modules, tessel){
