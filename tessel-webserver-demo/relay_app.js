@@ -10,7 +10,7 @@ Inputs to tessel
 	Light state (relay)
 */
 
-var relay_port = 'B';
+var relay_port = 'D';
 
     // HTTP Request routing library
 var router = require('tiny-router'),
