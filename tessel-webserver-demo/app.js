@@ -8,8 +8,8 @@ var util = require('util');
 require('tesselate')({                          // tesselate handles race condition for us and initilizes module hw
     modules: {
         A: ['climate-si7020', 'climate'],       // load climate-si7020 alias climate on port A
-        B: ['accel-mma84', 'accel'],            // load accelerometer module, aliased as ‘accel’ on port B
-        D: ['relay-mono', 'relay']              // relay handles the light and the flow of water
+        B: ['accel-mma84', 'accel']            // load accelerometer module, aliased as ‘accel’ on port B
+        //D: ['relay-mono', 'relay']              // relay handles the light and the flow of water
 },
 development: true              // enable development logging, useful for debugging
 }, function(tessel, modules){
@@ -17,6 +17,8 @@ development: true              // enable development logging, useful for debuggi
     // returns tessel to you as 'tessel'
     // returns your modules to you as properties of object m
     // refer to the IR module as m.ir, or the accelerometer module as m.accel
+
+    modules.relay = require('./fake_relay.js');
 
     var router = require('tiny-router');        // web server used to route requests to callback functions
     var fs = require("fs");                     // file system
@@ -84,11 +86,6 @@ function start_server(tessel, modules, router, fs){  // passing in tessel for de
         // Send a response
         res.send(200);
     });
-
-
-
-
-
 
     console.log('Running Server');
 }
