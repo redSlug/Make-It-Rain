@@ -7,8 +7,8 @@ var util = require('util');
 // Load and immediately run tesselate module
 require('tesselate')({                          // tesselate handles race condition for us and initilizes module hw
     modules: {
-        A: ['climate-si7020', 'climate'],       // load climate-si7020 alias climate on port A
-        B: ['accel-mma84', 'accel']            // load accelerometer module, aliased as ‘accel’ on port B
+        A: ['climate-si7020', 'climate']       // load climate-si7020 alias climate on port A
+        //B: ['accel-mma84', 'accel']            // load accelerometer module, aliased as ‘accel’ on port B
         //D: ['relay-mono', 'relay']              // relay handles the light and the flow of water
 },
 development: true              // enable development logging, useful for debugging
