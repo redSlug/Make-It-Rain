@@ -1,5 +1,4 @@
 
-
 // Global utility for debugging
 var util = require('util');
 
@@ -19,6 +18,16 @@ development: true              // enable development logging, useful for debuggi
     // refer to the IR module as m.ir, or the accelerometer module as m.accel
 
     modules.relay = require('./fake_relay.js');
+    
+    //
+    //NEW SEAN CODE
+    //
+    var gpio = tessel.port['GPIO']; // select the GPIO port
+	var myPin = gpio.pin['A1'];
+	console.log('Reading pin:', myPin.read());
+	//
+	//NEW SEAN CODE
+	//
 
     var router = require('tiny-router');        // web server used to route requests to callback functions
     var fs = require("fs");                     // file system
