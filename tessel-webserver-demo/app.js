@@ -6,9 +6,9 @@ var util = require('util');
 // Load and immediately run tesselate module    // can't use c
 require('tesselate')({                          // tesselate handles race condition for us and initilizes module hw
     modules: {
-        A: ['climate-si7020', 'climate'],        // load climate-si7020 alias climate on port A
+        A: ['climate-si7020', 'climate']        // load climate-si7020 alias climate on port A
         //B: ['accel-mma84', 'accel']           // load accelerometer module, aliased as ‘accel’ on port B
-        D: ['relay-mono', 'relay']            // relay handles the light and the flow of water
+        //D: ['relay-mono', 'relay']            // relay handles the light and the flow of water
 },
 development: true              // enable development logging, useful for debugging
 }, function(tessel, modules){
@@ -17,7 +17,7 @@ development: true              // enable development logging, useful for debuggi
     // returns your modules to you as properties of object m
     // refer to the IR module as m.ir, or the accelerometer module as m.accel
 
-    //modules.relay = require('./fake_relay.js'); // comment this out when deploying
+    modules.relay = require('./fake_relay.js'); // comment this out when deploying
     //console.log(modules.relay);
 
     tessel.led[0].output(1);
