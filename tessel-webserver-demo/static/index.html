@@ -1,87 +1,75 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Tessel Server</title>
+    <meta charset="utf-8">
+    <title>Make it Rain!</title>
 </head>
- 
-<body >
- 
-  <h1>Tessel Web Server</h1>
-  <button class="led" id="led-0">Toggle LED0 GREEN</button>
-  <button class="led" id="led-1">Toggle LED1 BLUE</button>
-  <button class="led" id="led-2">Toggle LED2 RED</button>
 
-  <br />
-  <h1>Raindance</h1>
+<body>
 
-  <button class="water" >Turn on Water</button>
-  <button class="light" >Toggle Lights</button>
-  <div id="lightDiv">OFF</div>
+<h1>Make it Rain!</h1>
+<button class="led" id="led-0">Get Plant Data</button>
+<button class="water">Toggle Water</button>
+<button class="light">Toggle Lights</button>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
-
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"> </script>
-
-  <script>
+<script>
 
     // When one of our LED buttons is clicked, call toggleLED
     $('.led').click(toggleLED);
-    var light_state=false;
+    var light_state = false;
     $('.water').click(toggleWater);
     $('.light').click(toggleLights);
 
-
     function toggleLED() {
 
-      // Get the led number of the clicked button
-      var index = this.id.split('-')[1];
+        // Get the led number of the clicked button
+        var index = this.id.split('-')[1];
 
-      // Make an AJAX post to our tessel with the index
-      $.ajax({
-        type: "GET",
-        url: '/leds/' + index,
-        success: function() { console.log('led ' + index + ' toggled'); }
-      }).done(function (data) {
-        alert("hello here is the data: " + JSON.stringify(data));
-      });
+        // Make an AJAX post to our tessel with the index
+        $.ajax({
+            type: "GET",
+            url: '/leds/' + index,
+            success: function () {
+                console.log('led ' + index + ' toggled');
+            }
+        }).done(function (data) {
+            alert("hello here is the data: " + JSON.stringify(data));
+        });
     }
 
 
     function toggleWater() {
-
-      // Make an AJAX post to our tessel with the index
-      $.ajax({
-        type: "GET",
-        url: '/water',
-        success: function() { console.log('water turned on'); }
-      });
+        // Make an AJAX post to our tessel with the index
+        $.ajax({
+            type: "GET",
+            url: '/water',
+            success: function () {
+                console.log('water toggled');
+            }
+        });
     }
     function toggleLights() {
-      light_state=!light_state;
-      // Make an AJAX post to our tessel with the index
-      $.ajax({
-        type: "GET",
-        url: '/lights',
-        success: function() { console.log('lights toggled'); }
-      });
-      //Change the content in the light div
-      if(light_state==true){
-        $('#lightDiv').text('ON');
-      }else{
-        $('#lightDiv').text('OFF');
-      }
+        light_state = !light_state;
+        // Make an AJAX post to our tessel with the index
+        $.ajax({
+            type: "GET",
+            url: '/lights',
+            success: function () {
+                console.log('lights toggled');
+            }
+        });
     }
 
 
-
-
-  </script>
+</script>
 
 <!--
 To view this page visit:
 http://ip/index.html for example,
 http://192.168.75.52:8080/index.html
 192.168.1.101:8080/index.html
+192.168.1.117:8080/index.html
  -->
 </body>
 </html>
