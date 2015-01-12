@@ -54,6 +54,15 @@ The pump is a $7 pump from ebay, but any pump can be used.
 Check out the final result [on youtube](http://youtu.be/cq1TpndOx3Y)
 
 
+## Team
+![pump](images/team.JPG)
 
+Left to right:
+[Sean Blum (Frontend)](https://github.com/SeanBlum),
+[Brandy Dettmer (Backend)](https://users.soe.ucsc.edu/~brandy/),
+[Zachary Rubin (Hardware)](http://zohii.com/),
+[Blake Skinner (Hardware)](https://users.soe.ucsc.edu/~hskinner/)
 
+## Thank You
+- [Laura Thompson](http://www.touchpond.com/) for being the best mentor our team could have had.
 
