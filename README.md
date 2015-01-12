@@ -5,12 +5,12 @@ Keep your plant alive from your cell phone!
 1. To get started with Tessel, by following [their instructions](http://start.tessel.io/install)
 1. Make sure you have `node.js` and all of the dependencies installed
 2. For debugging, plug your machine into the tessel via USB (you need to have tessel
-climate module plugged into slot B, you can you fake relay)
-3. `tessel run app.js`
+climate module plugged into slot B, and relay module plugged into slot D)
+3. To run in debug mode, use `tessel run app.js`
 3. To deploy to the tessel to have it run without your machine, use `tessel push app.js`
 
 ## Hardware Instructions
-### Conponents needed:
+### Components needed:
 1. tessel (a microcontroller that runs Javascript)
 2. tessel climate module ('climate-si7020')
 3. tessel relay module ('relay-mono')
@@ -51,18 +51,24 @@ The pump is a $7 pump from ebay, but any pump can be used.
 
 ![pump](images/pump.JPG)
 
-Check out the final result [on youtube](http://youtu.be/cq1TpndOx3Y)
+Watch it in action:
 
+[![Make it Rain demo](http://img.youtube.com/vi/cq1TpndOx3Y/0.jpg)](https://www.youtube.com/watch?v=cq1TpndOx3Y)
+
+To automate your plant care, you will need to build on this project.
 
 ## Team
 ![pump](images/team.JPG)
 
-Left to right:
+Left to right (above):
 [Sean Blum (Frontend)](https://github.com/SeanBlum),
 [Brandy Dettmer (Backend)](https://users.soe.ucsc.edu/~brandy/),
 [Zachary Rubin (Hardware)](http://zohii.com/),
 [Blake Skinner (Hardware)](https://users.soe.ucsc.edu/~hskinner/)
 
+Developed and presented over a weekend at a hackathon:
+
+[![Make it Rain presentation](http://img.youtube.com/vi/6CPo0jXEvaM/0.jpg)](https://www.youtube.com/watch?v=6CPo0jXEvaM)
+
 ## Thank You
 - [Laura Thompson](http://www.touchpond.com/) for being the best mentor our team could have had.
-
