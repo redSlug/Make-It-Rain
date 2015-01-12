@@ -51,11 +51,9 @@ The pump is a $7 pump from ebay, but any pump can be used.
 
 ![pump](images/pump.JPG)
 
-Watch it in action:
+Watch it in action (youtube):
 
 [![Make it Rain demo](http://img.youtube.com/vi/cq1TpndOx3Y/0.jpg)](https://www.youtube.com/watch?v=cq1TpndOx3Y)
-
-To automate your plant care, you will need to build on this project.
 
 ## Team
 ![pump](images/team.JPG)
@@ -66,7 +64,7 @@ Left to right (above):
 [Zachary Rubin (Hardware)](http://zohii.com/),
 [Blake Skinner (Hardware)](https://users.soe.ucsc.edu/~hskinner/)
 
-Developed and presented over a weekend at a hackathon:
+Developed and presented over a weekend at a hackathon (youtube):
 
 [![Make it Rain presentation](http://img.youtube.com/vi/6CPo0jXEvaM/0.jpg)](https://www.youtube.com/watch?v=6CPo0jXEvaM)
 
