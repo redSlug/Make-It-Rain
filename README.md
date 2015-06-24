@@ -56,17 +56,12 @@ Watch it in action (youtube):
 [![Make it Rain demo](http://img.youtube.com/vi/cq1TpndOx3Y/0.jpg)](https://www.youtube.com/watch?v=cq1TpndOx3Y)
 
 ## Team
-![pump](images/team.JPG)
-
-Left to right (above):
 [Sean Blum (Frontend)](https://github.com/SeanBlum),
-[Brandy Dettmer (Backend)](https://users.soe.ucsc.edu/~brandy/),
+Brad Dettmer (Backend),
 [Zachary Rubin (Hardware)](http://zohii.com/),
 [Blake Skinner (Hardware)](https://users.soe.ucsc.edu/~hskinner/)
 
-Developed and presented over a weekend at a hackathon (youtube):
-
-[![Make it Rain presentation](http://img.youtube.com/vi/6CPo0jXEvaM/0.jpg)](https://www.youtube.com/watch?v=6CPo0jXEvaM)
+Developed and presented over a weekend at [Hack UCSC](http://www.santacruztechbeat.com/2015/01/12/the-story-of-hack-ucsc-2015/)
 
 ## Thank You
 - [Laura Thompson](http://www.touchpond.com/) for being the best mentor our team could have had.
