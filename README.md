@@ -51,10 +51,6 @@ The pump is a $7 pump from ebay, but any pump can be used.
 
 ![pump](images/pump.JPG)
 
-Watch it in action (youtube):
-
-[![Make it Rain demo](http://img.youtube.com/vi/cq1TpndOx3Y/0.jpg)](https://www.youtube.com/watch?v=cq1TpndOx3Y)
-
 ## Team
 [Sean Blum (Frontend)](https://github.com/SeanBlum),
 Brad Dettmer (Backend),
